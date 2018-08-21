@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Notas</string>
+    <string name="Visu">Visualizar</string>
+    <string name="Entrar">Entrar</string>
+    <string name="Cad">Cadastrar</string>
+    <string name="Volt">Voltar</string>
+    <string name="CadNota">Cadastrar Nota</string>
+    <string name="GerNota">Gerenciar Notas</string>
+    <string name="CadData">Cadastrar Data</string>
+    <string name="GerData">Gerenciar Datas</string>
+    <string name="Salvar">Salvar</string>
+</resources>
