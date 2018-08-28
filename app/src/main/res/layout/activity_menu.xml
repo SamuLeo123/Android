@@ -21,12 +21,14 @@
             android:id="@+id/btnCadNota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="CadNota"
             android:text="@string/CadNota" />
 
         <Button
             android:id="@+id/btnGerNota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="GerNota"
             android:text="@string/GerNota" />
 
         <Button

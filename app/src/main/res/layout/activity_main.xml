@@ -57,12 +57,14 @@
             android:id="@+id/btnVis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="Login"
             android:text="@string/Entrar" />
 
         <Button
             android:id="@+id/btnCad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="Cadastrar"
             android:text="@string/Cad" />
 
     </LinearLayout>

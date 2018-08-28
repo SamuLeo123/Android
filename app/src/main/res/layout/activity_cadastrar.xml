@@ -24,12 +24,14 @@
             android:id="@+id/btnCad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="Cadastrar"
             android:text="@string/Cad" />
 
         <Button
             android:id="@+id/btnVolt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="Voltar"
             android:text="@string/Volt" />
 
     </LinearLayout>
