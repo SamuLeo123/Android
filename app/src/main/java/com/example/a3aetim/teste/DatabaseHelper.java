@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE User ( IdUser INTEGER PRIMARY KEY autoincrement, Nome String, Senha String )");
-        db.execSQL("CREATE TABLE Nota ( IdNota INTEGER PRIMARY KEY autoincrement, Texto String, IdUserFK INTEGER, foreign key (IdUserFK)  references User (IdUser))");
+        db.execSQL("CREATE TABLE Nota ( IdNota INTEGER PRIMARY KEY autoincrement, Titulo String ,Texto String, IdUserFK INTEGER, foreign key (IdUserFK)  references User (IdUser))");
         db.execSQL("CREATE TABLE Agenda ( IdAgenda INTEGER PRIMARY KEY autoincrement, Titulo String, Mensagem String, Data DateTime, IDUserFK INTEGER, foreign key (IdUserFK)  references User (IdUser))");
     }
 
@@ -23,4 +23,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
+    //https://pt.stackoverflow.com/questions/255109/select-no-sqlite-android
 }

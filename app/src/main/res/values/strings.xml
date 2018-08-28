@@ -9,4 +9,8 @@
     <string name="CadData">Cadastrar Data</string>
     <string name="GerData">Gerenciar Datas</string>
     <string name="Salvar">Salvar</string>
+    <string name="Sair">Sair</string>
+    <string name="Tit">Título</string>
+    <string name="Desc">Descrição</string>
+    <string name="SelDate">Selecionar Data</string>
 </resources>

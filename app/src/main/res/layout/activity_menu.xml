@@ -7,8 +7,9 @@
     tools:context=".Menu">
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="213dp"
+        android:layout_height="259dp"
         android:layout_marginBottom="150dp"
         android:layout_marginTop="148dp"
         android:orientation="vertical"
@@ -42,5 +43,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/GerData" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Sair" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

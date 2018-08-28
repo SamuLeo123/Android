@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.a3aetim.teste.CadastrarAgenda">
+
+    <LinearLayout
+        android:layout_width="355dp"
+        android:layout_height="231dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <EditText
+            android:id="@+id/edtTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/Tit"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edtDesc"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="@string/Desc"
+            android:inputType="textPersonName"
+            android:singleLine="false" />
+
+        <Button
+            android:id="@+id/btnSelDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="SelDate"
+            android:text="@string/SelDate" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="451dp">
+
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="Voltar"
+            android:text="@string/Volt" />
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="Salvar"
+            android:text="@string/Salvar" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

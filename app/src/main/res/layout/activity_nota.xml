@@ -7,47 +7,34 @@
     tools:context=".Nota">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="368dp"
-        android:layout_height="448dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="7dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+        android:id="@+id/linearLayout6"
+        android:layout_width="363dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/edtNota"
-            android:layout_width="match_parent"
-            android:layout_height="404dp"
-            android:background="@null"
+            android:id="@+id/edtTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:ems="10"
-            android:gravity="top"
-            android:inputType="textMultiLine" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="363dp"
-        android:layout_height="89dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+            android:hint="@string/Tit"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/btnVoltar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="Voltar"
             android:text="@string/Volt" />
 
         <Button
@@ -55,7 +42,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="Salvar"
             android:text="@string/Salvar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="368dp"
+        android:layout_height="424dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+        <EditText
+            android:id="@+id/edtNota"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:ems="10"
+            android:gravity="top"
+            android:inputType="textMultiLine" />
 
     </LinearLayout>
 
