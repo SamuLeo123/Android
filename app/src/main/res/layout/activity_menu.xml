@@ -36,18 +36,21 @@
             android:id="@+id/btnCadData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="CadData"
             android:text="@string/CadData" />
 
         <Button
             android:id="@+id/btnGerData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="GerData"
             android:text="@string/GerData" />
 
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="Sair"
             android:text="@string/Sair" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

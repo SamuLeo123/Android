@@ -34,11 +34,11 @@ public class GerNotas extends AppCompatActivity {
         //https://stackoverflow.com/questions/1851633/how-to-add-a-button-dynamically-in-android
         int IdU = GetIdU();
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM Notas WHERE IdUserrFK = '"+IdU+"'", null);
-        try{
 
+        try{
+            Cursor c = db.rawQuery("SELECT * FROM Nota WHERE IdUserFK = "+IdU, null);
             while(c.moveToNext()){
-                Button b = new Button(this);
+                final Button b = new Button(this);
                 b.setText(c.getString(1));
                 LinearLayout ll = (LinearLayout)findViewById(R.id.LLButtons);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -46,14 +46,14 @@ public class GerNotas extends AppCompatActivity {
 
                 b.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View view) {
-                        BClick(in);
+                        BClick(String.valueOf(b));
                     }
                 });
                 in++;
             }
         }
         catch(Exception erro){
-            Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "a"+erro, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -64,7 +64,16 @@ public class GerNotas extends AppCompatActivity {
         return i;
     }
 
-    public void BClick(int i){
-        Toast.makeText(this, "O num: " + i, Toast.LENGTH_SHORT).show();
+    public void BClick(String a)
+    {
+        int IdU = GetIdU();
+        SQLiteDatabase db = helper.getReadableDatabase();
+        try{
+            Cursor c = db.rawQuery("SELECT * FROM Nota WHERE IdUserFK = "+IdU + "AND Titulo = '"+ a +"'", null);
+        }
+        catch(Exception erro){
+            Toast.makeText(this, "a"+erro, Toast.LENGTH_SHORT).show();
+        }
+        Toast.makeText(this, "O num: " + a, Toast.LENGTH_SHORT).show();
     }
 }

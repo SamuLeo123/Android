@@ -25,7 +25,7 @@ public class Menu extends AppCompatActivity {
     }
 
     public void CadData(View view){
-        Intent i = new Intent(this, Menu.class);
+        Intent i = new Intent(this, CadastrarAgenda.class);
         startActivity(i);
     }
 
