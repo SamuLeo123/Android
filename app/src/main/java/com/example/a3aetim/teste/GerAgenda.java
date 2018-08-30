@@ -11,16 +11,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class GerNotas extends AppCompatActivity {
+public class GerAgenda extends AppCompatActivity {
 
     DatabaseHelper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ger_notas);
+        setContentView(R.layout.activity_ger_agenda);
 
         helper = new DatabaseHelper(this);
-        GetNotas();
+        GetEvents();
     }
 
     public void Voltar(View view){
@@ -29,20 +29,17 @@ public class GerNotas extends AppCompatActivity {
     }
 
     int in = 0;
-    public void GetNotas(){
-        //https://pt.stackoverflow.com/questions/255109/select-no-sqlite-android
-        //https://stackoverflow.com/questions/1851633/how-to-add-a-button-dynamically-in-android
+    public void GetEvents(){
         int IdU = GetIdU();
-        SQLiteDatabase db = helper.getReadableDatabase();
-
         try{
-            Cursor c = db.rawQuery("SELECT * FROM Nota WHERE IdUserFK = "+IdU, null);
+            SQLiteDatabase db = helper.getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM Agenda WHERE IdUserFK = "+IdU, null);
             while(c.moveToNext()){
                 final Button b = new Button(this);
                 b.setText(c.getString(1));
                 int tag = in;
                 b.setTag(tag);
-                LinearLayout ll = (LinearLayout)findViewById(R.id.LLButtons);
+                LinearLayout ll = (LinearLayout)findViewById(R.id.llGerA);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 ll.addView(b,lp);
 
@@ -53,10 +50,11 @@ public class GerNotas extends AppCompatActivity {
                 });
                 in++;
             }
+
+        }catch(Exception erro){
+            Toast.makeText(this, "Error: " + erro, Toast.LENGTH_SHORT).show();
         }
-        catch(Exception erro){
-            Toast.makeText(this, "Error: "+erro, Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     public int GetIdU(){
@@ -66,31 +64,31 @@ public class GerNotas extends AppCompatActivity {
         return i;
     }
 
-    public void BClick(String a)//a é a tag! Cada botao tem a sua.
-    {
+    public void BClick(String a){
         int IdU = GetIdU();
         SQLiteDatabase db = helper.getReadableDatabase();
         try{
-            LinearLayout ll = (LinearLayout)findViewById(R.id.LLButtons);
+            LinearLayout ll = (LinearLayout)findViewById(R.id.llGerA);
             Button b = (Button)ll.findViewWithTag(Integer.parseInt(a));
             String Tit = b.getText().toString();
-            Cursor c = db.rawQuery("SELECT * FROM Nota WHERE IdUserFK = "+IdU + " AND Titulo = '"+ Tit +"'", null);
-            c.moveToFirst(); //i -> 0: id,1:Tit, 2: Msg, 3 : IdUser
+            Cursor c = db.rawQuery("SELECT * FROM Agenda WHERE IdUserFK = "+IdU + " AND Titulo = '"+ Tit +"'", null);
+            c.moveToFirst(); //i -> 0: id,1:Tit, 2: Msg, 3 : Data, 4: IdUser
             int id = Integer.parseInt(c.getString(0));
             String title = c.getString(1);
             String msg = c.getString(2);
-            int iduser = Integer.parseInt(c.getString(3));
+            String data = c.getString(3);
+            int iduser = Integer.parseInt(c.getString(4));
 
-            Intent intent = new Intent(this, Nota.class);
-            intent.putExtra("EXTRA_IDNOTE", id);
+            Intent intent = new Intent(this, CadastrarAgenda.class);
+            intent.putExtra("EXTRA_IDAGENDA", id);
             intent.putExtra("EXTRA_TITLE", title);
             intent.putExtra("EXTRA_MSG", msg);
+            intent.putExtra("EXTRA_DATA", data);
             intent.putExtra("EXTRA_IDUSER", iduser);
             startActivity(intent);
         }
         catch(Exception erro){
             Toast.makeText(this, "Error: "+erro, Toast.LENGTH_SHORT).show();
         }
-        //Toast.makeText(this, "O num: " + a, Toast.LENGTH_SHORT).show();
     }
 }

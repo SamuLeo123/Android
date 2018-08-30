@@ -1,16 +1,17 @@
 <resources>
-    <string name="app_name">Notas</string>
+    <string name="app_name">Notes</string>
     <string name="Visu">Visualizar</string>
     <string name="Entrar">Entrar</string>
     <string name="Cad">Cadastrar</string>
     <string name="Volt">Voltar</string>
     <string name="CadNota">Cadastrar Nota</string>
     <string name="GerNota">Gerenciar Notas</string>
-    <string name="CadData">Cadastrar Data</string>
-    <string name="GerData">Gerenciar Datas</string>
+    <string name="CadData">Cadastrar Eventos</string>
+    <string name="GerData">Gerenciar Eventos</string>
     <string name="Salvar">Salvar</string>
     <string name="Sair">Sair</string>
     <string name="Tit">Título</string>
     <string name="Desc">Descrição</string>
     <string name="SelDate">Selecionar Data</string>
+    <string name="Devs">Desenvolvido Por:\n Leonardo Nogueira e Samuel Hiroyuki</string>
 </resources>

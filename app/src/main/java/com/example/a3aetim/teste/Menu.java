@@ -30,7 +30,7 @@ public class Menu extends AppCompatActivity {
     }
 
     public void GerData(View view){
-        Intent i = new Intent(this, Menu.class);
+        Intent i = new Intent(this, GerAgenda.class);
         startActivity(i);
     }
 

@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE User ( IdUser INTEGER PRIMARY KEY autoincrement, Nome String, Senha String )");
         db.execSQL("CREATE TABLE Nota ( IdNota INTEGER PRIMARY KEY autoincrement, Titulo String ,Texto String, IdUserFK INTEGER, foreign key (IdUserFK)  references User (IdUser))");
-        db.execSQL("CREATE TABLE Agenda ( IdAgenda INTEGER PRIMARY KEY autoincrement, Titulo String, Mensagem String, Data DateTime, IDUserFK INTEGER, foreign key (IdUserFK)  references User (IdUser))");
+        db.execSQL("CREATE TABLE Agenda ( IdAgenda INTEGER PRIMARY KEY autoincrement, Titulo String, Mensagem String, Data DateTime, IdUserFK INTEGER, foreign key (IdUserFK)  references User (IdUser))");
     }
 
     @Override

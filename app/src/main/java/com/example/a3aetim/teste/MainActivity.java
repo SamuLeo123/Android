@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         tName = (EditText)findViewById(R.id.edtName);
         tPass = (EditText)findViewById(R.id.edtPass);
 
+        CheckLogged();
+
     }
 
     public void Cadastrar(View view){
@@ -30,9 +32,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Login(View view){
-        SQLiteDatabase db = helper.getWritableDatabase();
         String name = tName.getText().toString();
         String pass = tPass.getText().toString();
+        Log(name,pass);
+    }
+
+    final String PREFS_NAME = "User";
+    public void SalvarSP(UserClass u){
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME,0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("IdUser",u.IdUser);
+        editor.putString("Name",u.Nome);
+        editor.putString("Senha",u.Senha);
+        editor.commit();
+    }
+
+    public void Log(String name, String pass){
+        SQLiteDatabase db = helper.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM User WHERE TRIM(Nome) = '"+name.trim()+"' AND TRIM(Senha) = '"+pass.trim()+"'", null);
         try {
             c.moveToFirst();
@@ -49,21 +65,22 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(this, Menu.class);
                 startActivity(i);
             } else {
-                Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             }
         }
         catch(Exception erro){
-            Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void SalvarSP(UserClass u){
-        final String PREFS_NAME = "User";
+    public void CheckLogged(){
         SharedPreferences settings = getSharedPreferences(PREFS_NAME,0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("IdUser",u.IdUser);
-        editor.putString("Name",u.Nome);
-        editor.putString("Senha",u.Senha);
-        editor.commit();
+        int i = settings.getInt("IdUser", 0);
+        String n = settings.getString("Name", "");
+        String p = settings.getString("Senha", "");
+        if( i != 0 && !(n.equals("")) && !(p.equals(""))){
+            Log(n,p);
+        }
+
     }
 }

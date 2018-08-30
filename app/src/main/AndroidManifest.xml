@@ -20,7 +20,8 @@
         <activity android:name=".Menu" />
         <activity android:name=".GerNotas" />
         <activity android:name=".Nota" />
-        <activity android:name=".CadastrarAgenda"></activity>
+        <activity android:name=".CadastrarAgenda" />
+        <activity android:name=".GerAgenda"></activity>
     </application>
 
 </manifest>

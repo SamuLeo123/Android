@@ -20,31 +20,51 @@ public class Nota extends AppCompatActivity {
         helper = new DatabaseHelper(this);
         edNota = (EditText)findViewById(R.id.edtNota);
         edTit = (EditText)findViewById(R.id.edtTitulo);
+
+        CheckUpdate();
     }
 
     public void Salvar(View view){
         try{
-            int IdUser = GetUser();
-            if(IdUser != 0) {
+            if(!Updating){
+                int IdUser = GetUser();
+                if(IdUser != 0) {
+                    SQLiteDatabase db = helper.getWritableDatabase();
+                    ContentValues values = new ContentValues();
+                    values.put("Titulo", edTit.getText().toString());
+                    values.put("Texto", edNota.getText().toString());
+                    values.put("IdUserFK", IdUser);
+
+                    long res = db.insert("Nota", null, values);
+
+                    if(res != -1){
+                        Toast.makeText(this,"Note Saved", Toast.LENGTH_SHORT).show();
+                        Voltar(view);
+                    }
+                    else{
+                        Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+            else{
                 SQLiteDatabase db = helper.getWritableDatabase();
                 ContentValues values = new ContentValues();
                 values.put("Titulo", edTit.getText().toString());
                 values.put("Texto", edNota.getText().toString());
-                values.put("IdUserFK", IdUser);
 
-                long res = db.insert("Nota", null, values);
+                long res = db.update("Nota", values, "IdNota ="+IdNoteUP+" AND IdUserFK ="+ IdUserUP, null);
 
                 if(res != -1){
-                    Toast.makeText(this,"Registro Salvo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Note Changed", Toast.LENGTH_SHORT).show();
                     Voltar(view);
                 }
                 else{
-                    Toast.makeText(this,"Erro", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
                 }
             }
         }
         catch(Exception erro){
-            Toast.makeText(this,"Erro", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Error: " + erro, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -58,5 +78,26 @@ public class Nota extends AppCompatActivity {
     public void Voltar(View view){
         Intent i = new Intent(this, Menu.class);
         startActivity(i);
+    }
+
+    int IdNoteUP,IdUserUP;
+    String TitleUP, MsgUP;
+    boolean Updating = false;
+    public void CheckUpdate(){
+        try{
+            IdNoteUP = getIntent().getIntExtra("EXTRA_IDNOTE",0);
+            if(IdNoteUP > 0){
+                Updating = true;
+                TitleUP = getIntent().getStringExtra("EXTRA_TITLE");
+                MsgUP = getIntent().getStringExtra("EXTRA_MSG");
+                IdUserUP = getIntent().getIntExtra("EXTRA_IDUSER",0);
+                edTit.setText(TitleUP);
+                edNota.setText(MsgUP);
+            }
+
+        }
+        catch(Exception erro){
+            Toast.makeText(this,"Erro: " + erro, Toast.LENGTH_SHORT).show();
+        }
     }
 }
