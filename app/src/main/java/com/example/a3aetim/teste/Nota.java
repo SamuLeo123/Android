@@ -6,9 +6,11 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 public class Nota extends AppCompatActivity {
     EditText edNota, edTit;
@@ -20,9 +22,16 @@ public class Nota extends AppCompatActivity {
         helper = new DatabaseHelper(this);
         edNota = (EditText)findViewById(R.id.edtNota);
         edTit = (EditText)findViewById(R.id.edtTitulo);
-
         CheckUpdate();
     }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_gerenciar, menu);
+//        return true;
+//    }
 
     public void Salvar(View view){
         try{
