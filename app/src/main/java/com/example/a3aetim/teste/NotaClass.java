@@ -12,4 +12,20 @@ public class NotaClass {
         this.Texto = Text;
         this.IdUser = IdUser;
     }
+
+    public String getTitulo() {
+        return Titulo;
+    }
+
+    public String getTexto() {
+        return Texto;
+    }
+
+    public int getIdNota() {
+        return IdNota;
+    }
+
+    public int getIdUser() {
+        return IdUser;
+    }
 }
