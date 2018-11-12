@@ -24,7 +24,7 @@ public class GerAgenda extends AppCompatActivity {
     }
 
     public void Voltar(View view){
-        Intent i = new Intent(this, Menu.class);
+        Intent i = new Intent(this, MenuGerenciar.class);
         startActivity(i);
     }
 

@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,23 +17,42 @@ import android.widget.Toolbar;
 public class Nota extends AppCompatActivity {
     EditText edNota, edTit;
     DatabaseHelper helper;
+    SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nota);
         helper = new DatabaseHelper(this);
+        db = helper.getWritableDatabase();
         edNota = (EditText)findViewById(R.id.edtNota);
         edTit = (EditText)findViewById(R.id.edtTitulo);
         CheckUpdate();
     }
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu_gerenciar, menu);
-//        return true;
-//    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_gerenciar, menu);
+       return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.action_remove: removerNota(); break;
+        }
+
+        return true;
+    }
+
+    private void removerNota() {
+        int value = getIntent().getIntExtra("EXTRA_IDNOTE",0);
+        db.execSQL("DELETE FROM Nota WHERE IdNota ='"+value+"'");
+        db.close();
+        voltar();
+        Toast.makeText(this,"Your note has been removed", Toast.LENGTH_SHORT).show();
+    }
 
     public void Salvar(View view){
         try{
@@ -85,8 +106,17 @@ public class Nota extends AppCompatActivity {
     }
 
     public void Voltar(View view){
-        Intent i = new Intent(this, Menu.class);
-        startActivity(i);
+        voltar();
+    }
+
+    public void voltar(){
+        try{
+            Intent i = new Intent(this, MenuGerenciar.class);
+            startActivity(i);
+        }
+        catch (Exception e){
+            Toast.makeText(this,e.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     int IdNoteUP,IdUserUP;
@@ -109,4 +139,6 @@ public class Nota extends AppCompatActivity {
             Toast.makeText(this,"Erro: " + erro, Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

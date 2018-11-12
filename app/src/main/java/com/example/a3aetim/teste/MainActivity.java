@@ -62,14 +62,14 @@ public class MainActivity extends AppCompatActivity {
             if (id > 0) {
                 UserClass u = new UserClass(id,name,pass);
                 SalvarSP(u);
-                Intent i = new Intent(this, Menu.class);
+                Intent i = new Intent(this, MenuGerenciar.class);
                 startActivity(i);
             } else {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             }
         }
         catch(Exception erro){
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error: " + erro.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 

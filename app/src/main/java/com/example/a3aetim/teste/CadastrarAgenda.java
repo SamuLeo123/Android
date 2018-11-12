@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -34,6 +36,7 @@ public class CadastrarAgenda extends AppCompatActivity {
     //1970-01-01 00:00:00 UTC
     Calendar data = Calendar.getInstance();
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-hh:mm:ss");
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class CadastrarAgenda extends AppCompatActivity {
         setContentView(R.layout.activity_cadastrar_agenda);
 
         helper = new DatabaseHelper(this);
+        db = helper.getWritableDatabase();
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
@@ -52,8 +56,37 @@ public class CadastrarAgenda extends AppCompatActivity {
         CheckUpdate();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_gerenciar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.action_remove: removerAgenda(); break;
+        }
+
+        return true;
+    }
+
+    private void removerAgenda() {
+        int value = getIntent().getIntExtra("EXTRA_IDAGENDA", 0);
+        db.execSQL("DELETE FROM Agenda WHERE IdAgenda ='"+value+"'");
+        db.close();
+        voltar();
+        Toast.makeText(this,"Your event has been removed", Toast.LENGTH_SHORT).show();
+    }
+
     public void Voltar(View view){
-        Intent i = new Intent(this, Menu.class);
+        voltar();
+    }
+
+    public void voltar(){
+        Intent i = new Intent(this, MenuGerenciar.class);
         startActivity(i);
     }
 

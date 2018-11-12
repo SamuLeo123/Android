@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Cadastrar" />
-        <activity android:name=".Menu" />
+        <activity android:name=".MenuGerenciar" />
         <activity android:name=".GerNotas" />
         <activity android:name=".Nota" />
         <activity android:name=".CadastrarAgenda" />
